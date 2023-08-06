@@ -25,18 +25,18 @@ The reason for this is that the engine caches the data in RAM, so that it can ac
 # Install MySQL
 
 ```bash
-sudo apt install mysql-server
+sudo apt install mysql-server;
 
-sudo mysql_secure_installation
+sudo /etc/init.d/mysql start;
+# sudo service mysql start
+# systemctl restart mysql
+
+sudo mysql_secure_installation; # Makes mysql more secure
 # Change root password to more secure.
 # Remove anonymous users.
 # Disable remote root login. Root should only connect via `localhost`.
 # Remove test database and access to it.
 # Reload privilege tables.
-
-sudo /etc/init.d/mysql start
-# sudo service mysql start
-# systemctl restart mysql
 ```
 
 ### Remove MySQL
@@ -96,6 +96,9 @@ CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
 
 -- Give access to certain areas. In this case, it's for everything as *.* stands for dbName.tableName i.e. all of them.
 GRANT ALL PRIVILEGES ON * . * TO 'user'@'localhost';
+
+-- Fix errors
+ALTER USER 'user'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password'
 
 -- Reload the privileges.
 FLUSH PRIVILEGES;

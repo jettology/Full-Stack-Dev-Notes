@@ -76,6 +76,15 @@ UPDATE product
 SET product.price = t2.newPrice
 FROM t2
 WHERE product.sku = t2.sku
+
+-- where
+update product set isActive = 0
+where sku in (
+		select sku
+		from stock
+		group by sku
+		having sum(quantity) = 0
+	)
 ```
 
 MySQL
@@ -137,6 +146,17 @@ FROM sales
 
 # Running Total
 
+This one is better because it can be based on all data...
+
+```sql
+-- the `order` by turns this into a running sum.
+select
+    sum(value) over (partition by client order by date desc) runningTotal
+from sales;
+```
+
+...instead of just filtered.
+
 ```sql
 SELECT
     isnull(profit, 0) profit,
@@ -144,6 +164,14 @@ SELECT
     SUM(profit) OVER () AS profitTotal, -- sum of profit column
     SUM(profit) OVER(ORDER BY profit desc ROWS UNBOUNDED PRECEDING) / SUM(profit) OVER () profitShare
 FROM sales
+```
+
+# Previous value
+
+```sql
+select
+    lag(value) over (order by created) -- returns the previous row's value
+from sales
 ```
 
 # Partition By
@@ -563,4 +591,87 @@ order by ym desc
 
 -- execution
 EXEC (@sql)
+```
+
+# Bulk insert
+
+Fastest, but has a limit of 1,000 inserts.
+
+```js
+await request.query(`
+    insert into table 
+        (column1, column2, column3)
+    values 
+        ('foo', 'bar', 'baz'),
+        ('foo', 'bar', 'baz'),
+        ('foo', 'bar', 'baz')
+    ;
+`);
+```
+
+Best
+
+```js
+await request.query(`
+    insert into table 
+        (column1, column2, column3)
+    values 
+        ('foo', 'bar', 'baz');
+
+    insert into table 
+        (column1, column2, column3)
+    values 
+        ('foo', 'bar', 'baz');
+
+    insert into table 
+        (column1, column2, column3)
+    values 
+        ('foo', 'bar', 'baz');
+`);
+```
+
+Slowest
+
+```js
+await request.query(`
+    insert into table 
+        (column1, column2, column3)
+    values 
+        ('foo', 'bar', 'baz');
+`);
+
+await request.query(`
+    insert into table 
+        (column1, column2, column3)
+    values 
+        ('foo', 'bar', 'baz');
+`);
+
+await request.query(`
+    insert into table 
+        (column1, column2, column3)
+    values 
+        ('foo', 'bar', 'baz');
+`);
+```
+
+# Multiple sums
+
+```sql
+select
+    mi.acIdent,
+    m.acissuer,
+    datediff(day, max(m.adDate), getdate()) lastSaleDays,
+    sum(CASE WHEN m.adDate >= getdate() - 30 THEN mi.anQty ELSE 0 END) soldPastDaysQty,
+    sum(CASE WHEN m.adDate between getdate() - (365 * 1) and getdate() - (365 * 1 - 30) THEN mi.anQty ELSE 0 END) soldNextDaysOneYearAgoQty,
+    sum(CASE WHEN m.adDate between getdate() - (365 * 2) and getdate() - (365 * 2 - 30) THEN mi.anQty ELSE 0 END) soldNextDaysTwoYearsAgoQty,
+    sum(CASE WHEN m.adDate between getdate() - (365 * 3) and getdate() - (365 * 3 - 30) THEN mi.anQty ELSE 0 END) soldNextDaysThreeYearsAgoQty,
+    sum(CASE WHEN m.adDate between getdate() - (365 * 4) and getdate() - (365 * 4 - 30) THEN mi.anQty ELSE 0 END) soldNextDaysFourYearsAgoQty
+from the_moveitem mi
+    left join the_move m on mi.acKey = m.acKey
+where
+    m.adDate > getdate() - 365 * 4
+group by
+    mi.acident,
+    m.acIssuer
 ```

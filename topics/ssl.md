@@ -40,13 +40,12 @@ sudo ls /etc/letsencrypt/live/example.com
 
 # Issue SSL
 
-**IMPORTANT: Must disable nginx!**
+**IMPORTANT: Must disable nginx! Certbot runs its own instance.**
+
+**Issue certificate, before modifying nginx.conf.**
 
 ```bash
-# Stop listening to port 80
-sudo systemctl stop nginx
-
-# Stop all processes
+# Stop all nginx processes
 sudo killall nginx
 
 # Get SSL certificate
@@ -61,10 +60,7 @@ sudo systemctl start nginx
 **IMPORTANT: Must disable nginx**
 
 ```bash
-# Stop listening to port 80
-systemctl stop nginx
-
-# Stop all processes
+# Stop all nginx processes
 sudo killall nginx
 
 # Renew bulk
@@ -80,7 +76,6 @@ systemctl start nginx
 # Errors
 
 ```
-sudo systemctl stop nginx
 sudo killall -9 nginx
 sudo systemctl start nginx
 ```
@@ -89,7 +84,7 @@ sudo systemctl start nginx
 
 **IMPORTANT!**
 
-Other sites without SSL will broken i.e. they will resolve to the SSL one due to the redirect rule. Browsers force SSL so the only solution is to add it to everything.
+Other sites without SSL will be broken i.e. they will resolve to the SSL one due to the redirect rule. Browsers force SSL so the only solution is to add it to everything.
 
 **A permanent redirect (code 301) gets cached by the browser.** If you had a 301 redirect for `app.example.com` to `example.com` in the past then **the browser will not check again** but use the already cached redirect and visit the target directly.
 

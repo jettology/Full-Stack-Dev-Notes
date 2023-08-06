@@ -1,13 +1,20 @@
+# Reality
+
+> # **90% of real-world programs are database frontends, held by duct tape.**
+
 # Programming
 
 ### **Javascript**
 
--   [Javascript](./topics/javascript.md)
--   [ES6](./topics/es6.md)
+-   [Language](./topics/javascriptLanguage.md)
+-   [Basics](./topics/javascriptBasics.md)
+-   [ES6](./topics/javascriptEs6.md)
+-   [Document Object Model (DOM)](./topics/javascriptDom.md)
+-   [Async](./topics/javascriptAsync.md)
 -   [Object Oriented Programming (OOP)](./topics/oop.md)
--   [Document Object Model (DOM)](./topics/dom.md)
--   [Async](./topics/async.md)
 -   [Functional Programming](./topics/fp.md)
+-   [Debugging](./topics/javascriptDebugging.md)
+-   [Code Golf](./topics/javascriptCodeGolf.md)
 
 ### **Frontend**
 
@@ -35,10 +42,11 @@
             -   [Code Structure](./topics/express-structure.md)
         -   [Middleware](./topics/middleware.md)
         -   [.env](./topics/dotenv.md)
-    -   [nginx](./topics/nginx.md)
-        -   [SSL](./topics/ssl.md)
     -   [GraphQL](./topics/graphql.md)
     -   [Web Sockets](./topics/websockets.md)
+-   Web server
+    -   [nginx](./topics/nginx.md)
+        -   [SSL](./topics/ssl.md)
 -   Libraries
     -   [cryptojs](./topics/cryptojs.md)
     -   [nodemailer](./topics/nodemailer.md)
@@ -52,7 +60,6 @@
 -   [Design](./topics/dbdesign.md)
 -   [Indexing](./topics/indexing.md)
 -   [SQL queries](./topics/sqlQueries.md)
--   [Best practices](./topics/sqlBestPractices.md)
 -   [MySQL](./topics/mysql.md)
     -   [node mysql](./topics/node-mysql.md)
 -   [SQL Server](./topics/sqlserver.md)
@@ -63,7 +70,6 @@
 -   [Git](./topics/git.md)
 -   [Babel](./topics/babel.md)
 -   [Webpack](./topics/webpack.md)
--   Typescript
 -   [VS Code](./topics/vscode.md)
 
 ### **Architecture**
@@ -77,12 +83,13 @@
 
 ### **Concepts**
 
+-   [Code quality and performance](./topics/codeQuality.md)
+-   [UI/UX](./topics/uiux.md)
 -   [Methodologies (Agile/SCRUM)](./topics/methodologies.md)
 -   [Security](./topics/security.md)
 -   [Testing](./topics/testing.md)
     -   [Jest](./topics/testingJest.md)
     -   [Mocha](./topics/testingMocha.md)
--   [Code quality](./topics/codeQuality.md)
 
 ### **Useful**
 
@@ -100,16 +107,69 @@
 -   [Google API](./topics/googleapi.md)
 -   [Reddit API](./topics/reddit.md)
 
+# Workflow
+
+-   [Environment](./topics/workflowEnvironment.md)
+-   [Development](./topics/workflowDevelopment.md)
+-   [Deployment](./topics/workflowDeployment.md)
+
 # Mobile
 
 -   [Overview](./topics/mobile.md)
--   [PWA](./topics/pwa.md)
+
+**Native**
+
+-   [Android (Kotlin, Java) - Android Studio / Google](./topics/mobileAndroid.md)
+-   [iOS (Swift, Objective-C) - XCode / Apple](./topics/mobileiOS.md)
+
+**Compiled**
+
+-   React Native (React, Javascript)
+-   Native Script (XML, Javascript)
+-   Flutter (Dart)
+
+**Hybrid**
+
+-   [Cordova (HTML, CSS, Javascript)](./topics/mobileCordova.md)
+-   [Capacitor (HTML, CSS, Javascript)](./topics/mobileCapacitor.md)
+-   [PWA (HTML, CSS, Javascript)](./topics/mobilePWA.md)
+
+# Linux
+
+-   [Operating System](./topics/linux.md)
+
+### **Administration**
+
+-   [Terminal](./topics/linuxTerminal.md)
+-   [Filesystem](./topics/linuxFilesystem.md)
+-   [Users](./topics/linuxUsers.md)
+-   [Config](./topics/linuxConfig.md)
+
+### **Tools**
+
+-   [bash - scripting](./topics/bash.md)
+-   [vim - editor](./topics/vim.md)
+-   [ssh - remote access](./topics/ssh.md)
+-   [rsync - file transfer](./topics/rsync.md)
+-   [tmux - terminal windows multiplexer](./topics/tmux.md)
+-   [cron - scheduling](./topics/cron.md)
+-   [systemd - daemons](./topics/systemd.md)
+-   [gzip - compression](./topics/gzip.md)
+
+# Networking
+
+-   [Overview](./topics/networkingOverview.md)
+    -   [OSI Model](./topics/networkingModelOSI.md)
+    -   [TCP/IP Model](./topics/networkingModelTCPIP.md)
+        -   [2. Link - MAC](./topics/networkingLayer2LinkMAC.md)
+        -   [3. Network - IP, Subnet, Gateway, DHCP](./topics/networkingLayer3NetworkIP.md)
+        -   [4. Transfer - TCP, Ports ](./topics/networkingLayer4TransferTCP.md)
+        -   [5. Application - HTTP, DNS, DDNS](./topics/networkingLayer5ApplicationHTTP.md)
+-   [Tools](./topics/networkingTools.md)
+-   [Devices](./topics/networkingDevices.md)
+-   [Roles](./topics/networkingRoles.md)
 
 # DevOps
-
-### **General**
-
--   [Deployment](./topics/deployment.md)
 
 ### **Virtualization**
 
@@ -123,39 +183,6 @@
 ### **Configuration Management**
 
 -   [Ansible](./topics/ansible.md)
-
-# Linux
-
-### **Administration**
-
--   [basics](./topics/linux.md)
--   [filesystem](./topics/filesystem.md)
--   [users](./topics/users.md)
--   [config](./topics/config.md)
-
-### **Tools**
-
--   [bash - scripting](./topics/bash.md)
--   [tmux - terminal windows multiplexer](./topics/tmux.md)
--   [vim - editor](./topics/vim.md)
--   [ssh - remote access](./topics/ssh.md)
--   [rsync - file transfer](./topics/rsync.md)
--   [gzip - compression](./topics/gzip.md)
--   [cron - scheduling](./topics/cron.md)
--   [systemd - daemons](./topics/systemd.md)
-
-# Networking
-
--   [Overview](./topics/networkingOverview.md)
-    -   [OSI Model](./topics/networkingModelOSI.md)
-    -   [TCP/IP Model](./topics/networkingModelTCPIP.md)
-        -   [2. Link - MAC](./topics/networkingLayer2LinkMAC.md)
-        -   [3. Network - IP, Subnet, Gateway, DHCP](./topics/networkingLayer3NetworkIP.md)
-        -   [4. Transfer - TCP, Ports ](./topics/networkingLayer4TransferTCP.md)
-        -   [5. Application - HTTP, DNS](./topics/networkingLayer5ApplicationHTTP.md)
--   [Tools](./topics/networkingTools.md)
--   [Devices](./topics/networkingDevices.md)
--   [Roles](./topics/networkingRoles.md)
 
 # Electronics
 
@@ -178,6 +205,14 @@
 -   [Electricity](./topics/electricity.md)
 
 # Startup
+
+If you can build a product that is so good, people spontaneosly tell their friends about it, you've done 80% of the work you need to be a really successful startup.
+
+The most successful companies you know, you've probably found out about them because a friend of your's said "You have to try this, it's great!".
+
+One important indicator for a product like that is a product that's simple to explain and easy to understand.
+
+If you can't explain in a few words what you do, and some people say "Oh, that's pretty interesting...", it's a mistake, and usually a sign of unclear thinking, or a need that is not big enough.
 
 ### **Overview**
 
